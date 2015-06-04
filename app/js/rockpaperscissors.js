@@ -41,33 +41,37 @@ function getWinner(playerMove,computerMove) {
     // Assume that the only values playerMove and computerMove can have are 'rock', 'paper', and 'scissors'.
     // The rules of the game are that 'rock' beats 'scissors', 'scissors' beats 'paper', and 'paper' beats 'rock'.
     /* YOUR CODE HERE */
-    if (playerMove = computerMove) {
+    if (playerMove === computerMove) {
         winner = "tie";
     }
-    else if (playerMove = "rock"){
-        if (computerMove = "paper") {
+    else if (playerMove === "rock"){
+        if (computerMove === "paper") {
             winner = "computer";
         }
-        else if(computerMove = "scissors"){
+        else if(computerMove === "scissors"){
             winner = "player";
         }
     }
-    else if (playerMove = "paper"){
-        if (computerMove = "rock"){
+    else if (playerMove === "paper"){
+        if (computerMove === "rock"){
             winner = "player";
         }
-        else if (computerMove = "scissors"){
+        else if (computerMove === "scissors"){
             winner = "computer";
         }
     }
-    else if (playerMove = "scissors"){
-        if (computerMove = "rock"){
+    else if (playerMove === "scissors"){
+        if (computerMove === "rock"){
             winner = "computer";
         }
-        else if (computerMove = "paper"){
+        else if (computerMove === "paper"){
             winner = "player";
         }
     }
+    else{
+        console.log('Sorry, I do not know what that is, please choose from "rock", "paper", or "scissors".')
+    }
+    console.log('Player chose ' + playerMove + ' while Computer chose ' + computerMove);
 
     return winner;
 }
@@ -78,6 +82,24 @@ function playToFive() {
     var computerWins = 0;
     // Write code that plays 'Rock, Paper, Scissors' until either the player or the computer has won five times.
     /* YOUR CODE HERE */
+    while (playerWins<5 && computerWins<5) {
+        var wonThatRound = getWinner(getPlayerMove(), getComputerMove());
+        if (wonThatRound === "player") {
+            playerWins++;
+            console.log("Player Wins!");
+        }
+        else if (wonThatRound === "computer") {
+            computerWins++;
+            console.log("Computer Wins!");
+
+        }
+        else {
+            console.log("Tie Game!");
+        }
+
+        console.log('The score is currently ' + playerWins + ' to ' + computerWins + '\n');
+    }
+    console.log("Done! Now go outside.");
     return [playerWins, computerWins];
 }
 
